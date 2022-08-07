@@ -1,86 +1,161 @@
-import type { NextPage } from 'next'
 import Head from 'next/head'
-import Image from 'next/image'
+import Link from 'next/link'
+import { Header } from '../components/Header'
+import { PostCard } from '../components/Home Post List/PostCard'
+import { Trending } from '../components/Trending/Trending'
+import { RoundedButton } from '../components/Util/Util'
+import { sanityClient } from '../sanity'
+import { Post } from '../typings';
 
-const Home: NextPage = () => {
+interface Props {
+  trendingPosts: [
+    Post
+  ],
+  posts: [Post]
+}
+
+const Home = ( { trendingPosts, posts }: Props ) => {
+
+
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center py-2">
+    <div className="h-full">
       <Head>
-        <title>Create Next App</title>
+        <title>Medium</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="flex w-full flex-1 flex-col items-center justify-center px-20 text-center">
-        <h1 className="text-6xl font-bold">
-          Welcome to{' '}
-          <a className="text-blue-600" href="https://nextjs.org">
-            Next.js!
-          </a>
-        </h1>
+      <Header />
 
-        <p className="mt-3 text-2xl">
-          Get started by editing{' '}
-          <code className="rounded-md bg-gray-100 p-3 font-mono text-lg">
-            pages/index.tsx
-          </code>
-        </p>
+      <section className='h-2/3 bg-[#FFC901] border-b border-black' id="hero">
+        <div className='max-w-7xl mx-auto justify-between p-5 flex items-center h-[85%]'>
+          <div className='space-y-6'>
+            <h1 className='text-7xl lg:text-[7.5rem]  font-serif'>Stay curious.</h1>
+            <h2 className='text-xl lg:max-w-lg text-gray-800'>Discover stories, thinking, and expertise from writers on any topic.</h2>
+            <RoundedButton text='Start Reading' textColor='white' bgColor='bg-stone-800' px='4' py='3' w='w-48' />
+          </div>
 
-        <div className="mt-6 flex max-w-4xl flex-wrap items-center justify-around sm:w-full">
-          <a
-            href="https://nextjs.org/docs"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Documentation &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Find in-depth information about Next.js features and its API.
-            </p>
-          </a>
-
-          <a
-            href="https://nextjs.org/learn"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Learn &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Learn about Next.js in an interactive course with quizzes!
-            </p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Examples &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Discover and deploy boilerplate example Next.js projects.
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Deploy &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+          <img className='hidden md:inline-flex h-32 lg:h-full' src="https://accountabilitylab.org/wp-content/uploads/2020/03/Medium-logo.png" alt="medium-hero-page-logo" />
         </div>
-      </main>
+      </section>
 
-      <footer className="flex h-24 w-full items-center justify-center border-t">
-        <a
-          className="flex items-center justify-center gap-2"
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-        </a>
-      </footer>
+      <section>
+        <Trending posts={trendingPosts} />
+      </section>
+
+      <div className='w-full max-w-7xl mx-auto flex flex-col lg:flex-row justify-between gap-x-28 px-5 py-5 lg:py-10'>
+        <div className='w-full lg:w-2/3 scroll-m-16'>
+          {posts.map( ( post ) => ( <PostCard key={post._id} post={post} /> ) )}
+        </div>
+
+        <div className='w-full lg:w-1/3 space-y-4 lg:sticky lg:top-24 lg:h-fit'>
+          <h3 className='font-bold uppercase text-md'>Discover more of what matters to you</h3>
+          <div className='flex flex-wrap items-center'>
+            <Link href='/'>
+              <p className='text-gray-600 mb-2 mr-2 cursor-pointer border border-gray-300 px-4 py-2 w-fit text-center rounded-sm text-sm'>Self</p>
+            </Link>
+            <Link href='/' >
+              <p className='text-gray-600 mb-2 mr-2 cursor-pointer border border-gray-300 px-4 py-2 w-fit text-center rounded-sm text-sm'>Relationships</p>
+            </Link>
+            <Link href='/' >
+              <p className='text-gray-600 mb-2 mr-2 cursor-pointer border border-gray-300 px-4 py-2 w-fit text-center rounded-sm text-sm'>Data Science</p>
+            </Link>
+            <Link href='/' >
+              <p className='text-gray-600 mb-2 mr-2 cursor-pointer border border-gray-300 px-4 py-2 w-fit text-center rounded-sm text-sm'>Programming</p>
+            </Link>
+            <Link href='/' >
+              <p className='text-gray-600 mb-2 mr-2 cursor-pointer border border-gray-300 px-4 py-2 w-fit text-center rounded-sm text-sm'>Productivity</p>
+            </Link>
+            <Link href='/' >
+              <p className='text-gray-600 mb-2 mr-2 cursor-pointer border border-gray-300 px-4 py-2 w-fit text-center rounded-sm text-sm'>Java Script</p>
+            </Link>
+            <Link href='/' >
+              <p className='text-gray-600 mb-2 mr-2 cursor-pointer border border-gray-300 px-4 py-2 w-fit text-center rounded-sm text-sm'>Machine Learning</p>
+            </Link>
+            <Link href='/' >
+              <p className='text-gray-600 mb-2 mr-2 cursor-pointer border border-gray-300 px-4 py-2 w-fit text-center rounded-sm text-sm'>Politics</p>
+            </Link>
+            <Link href='/' >
+              <p className='text-gray-600 mb-2 mr-2 cursor-pointer border border-gray-300 px-4 py-2 w-fit text-center rounded-sm text-sm'>Health</p>
+            </Link>
+          </div>
+          <div className='flex flex-wrap items-center justify-center lg:justify-start mt-10 py-4 border-t border-gray-200'>
+            <Link href='/' >
+              <p className='text-gray-500 mb-3 mr-5 text-md cursor-pointer'>Help</p>
+            </Link>
+            <Link href='/' >
+              <p className='text-gray-500 mb-3 mr-5 text-md cursor-pointer'>Status</p>
+            </Link>
+            <Link href='/' >
+              <p className='text-gray-500 mb-3 mr-5 text-md cursor-pointer'>Writers</p>
+            </Link>
+            <Link href='/' >
+              <p className='text-gray-500  mb-3 mr-5 text-md cursor-pointer'>Blog</p>
+            </Link>
+            <Link href='/' >
+              <p className='text-gray-500  mb-3 mr-5 text-md cursor-pointer'>Careers</p>
+            </Link>
+            <Link href='/' >
+              <p className='text-gray-500 mb-3 mr-5 text-md cursor-pointer'>Privacy</p>
+            </Link>
+            <Link href='/' >
+              <p className='text-gray-500 mb-3 mr-5 text-md cursor-pointer'>Terms</p>
+            </Link>
+            <Link href='/' >
+              <p className='text-gray-500  mb-3 mr-5 text-md cursor-pointer'>About</p>
+            </Link>
+            <Link href='/' >
+              <p className='text-gray-500  mb-3 mr-5 text-md cursor-pointer'>Knowable</p>
+            </Link>
+          </div>
+        </div>
+      </div>
+
     </div>
   )
 }
 
 export default Home
+
+export const getServerSideProps = async () => {
+  const trendingPostsQuery = `*[_type == "post" && trending == true][0..5]{
+    _id,
+    publishedAt,
+    trendingNum,
+    title,
+    author -> {
+      name,
+      image,
+      bio
+    },
+    description,
+    tags,
+    mainImage,
+    slug,
+    body
+  } | order(trendingNum asc)`;
+
+  /*&& (trending != true || trending > 6)*/
+  const postsQuery = `*[_type == "post" ]{
+    _id,
+    publishedAt,
+    trendingNum,
+    title,
+    author -> {
+      name,
+      image,
+      bio
+    },
+    description,
+    tags,
+    mainImage,
+    slug,
+    body
+  }`;
+
+  const trendingPosts = await sanityClient.fetch( trendingPostsQuery )
+  const posts = await sanityClient.fetch( postsQuery )
+
+  return {
+    props: { trendingPosts, posts }
+  }
+}
