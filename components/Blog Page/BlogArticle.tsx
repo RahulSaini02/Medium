@@ -10,8 +10,8 @@ interface Props {
 }
 export const BlogArticle = ( { post }: Props ) => {
     return (
-        <article className='flex-1  space-y-8 overflow-y-scroll scrollbar-hide lg:col-span-7 lg:border-r lg:border-gray-300 '>
-            <div className='p-5 lg:px-16 lg:py-14 lg:pb-5'>
+        <article className='flex-1 space-y-4 overflow-y-scroll scrollbar-hide lg:col-span-7 lg:border-r lg:border-gray-300 '>
+            <div className='p-5 space-y-8 lg:px-16 lg:py-14 lg:pb-5'>
                 <UserHeader post={post} />
                 {/* Title | Descritpion */}
                 <div className='space-y-2'>
@@ -23,44 +23,48 @@ export const BlogArticle = ( { post }: Props ) => {
                     <img className='w-full object-cover ' src={urlFor( post.mainImage ).url()!} alt="main blog image" />
                 </div>
                 {/* Article */}
-                <div>
-                    <PortableText
-                        dataset={process.env.NEXT_PUBLIC_SANITY_DATASET!}
-                        projectId={process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!}
-                        content={post.body}
-                        serializers={
-                            {
-                                h1: ( props: any ) => (
-                                    <h1 className='text-2xl font-bold my-5 text-stone-800' {...props} />
-                                ),
-                                h2: ( props: any ) => (
-                                    <h2 className='text-xl font-bold my-5 text-stone-800' {...props} />
-                                ),
-                                h3: ( props: any ) => (
-                                    <h3 className='font-bold my-5 text-stone-800' {...props} />
-                                ),
-                                h4: ( props: any ) => (
-                                    <h4 className='my-5 text-stone-800' {...props} />
-                                ),
-                                h5: ( props: any ) => (
-                                    <h5 className='my-5 text-stone-800' {...props} />
-                                ),
-                                h6: ( props: any ) => (
-                                    <h6 className='my-5 text-stone-800' {...props} />
-                                ),
-                                normal: ( props: any ) => (
-                                    <p className='text-lg my-5 text-stone-800' {...props} />
-                                ),
-                                li: ( { children }: any ) => (
-                                    <li className='list-disc text-lg ml-5 my-2 text-stone-800'>{children}</li>
-                                ),
-                                link: ( { href, children }: any ) => (
-                                    <a href={href} className='text-sky-600 hover:underline'>{children}</a>
-                                ),
-                            }
-                        }
-                    />
-                </div>
+                {
+                    post.body !== null ? (
+                        <div>
+                            <PortableText
+                                dataset={process.env.NEXT_PUBLIC_SANITY_DATASET!}
+                                projectId={process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!}
+                                content={post.body}
+                                serializers={
+                                    {
+                                        h1: ( props: any ) => (
+                                            <h1 className='text-2xl font-bold my-5 text-stone-800' {...props} />
+                                        ),
+                                        h2: ( props: any ) => (
+                                            <h2 className='text-xl font-bold my-5 text-stone-800' {...props} />
+                                        ),
+                                        h3: ( props: any ) => (
+                                            <h3 className='font-bold my-5 text-stone-800' {...props} />
+                                        ),
+                                        h4: ( props: any ) => (
+                                            <h4 className='my-5 text-stone-800' {...props} />
+                                        ),
+                                        h5: ( props: any ) => (
+                                            <h5 className='my-5 text-stone-800' {...props} />
+                                        ),
+                                        h6: ( props: any ) => (
+                                            <h6 className='my-5 text-stone-800' {...props} />
+                                        ),
+                                        normal: ( props: any ) => (
+                                            <p className='text-lg my-5 text-stone-800' {...props} />
+                                        ),
+                                        li: ( { children }: any ) => (
+                                            <li className='list-disc text-lg ml-5 my-2 text-stone-800'>{children}</li>
+                                        ),
+                                        link: ( { href, children }: any ) => (
+                                            <a href={href} className='text-sky-600 hover:underline'>{children}</a>
+                                        ),
+                                    }
+                                }
+                            />
+                        </div>
+                    ) : ""
+                }
                 {/* Likes | Comments | Share | Bookmark */}
                 <div className='pt-10 flex items-center justify-between text-stone-400'>
                     <div className='flex items-center space-x-4'>
@@ -102,42 +106,49 @@ export const BlogArticle = ( { post }: Props ) => {
                     </div>
                 </div>
                 <div className='lg:max-w-xl'>
-                    <PortableText
-                        dataset={process.env.NEXT_PUBLIC_SANITY_DATASET!}
-                        projectId={process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!}
-                        content={post.author.bio}
-                        serializers={
-                            {
-                                h1: ( props: any ) => (
-                                    <h1 className='text-2xl font-bold my-5 text-stone-800' {...props} />
-                                ),
-                                h2: ( props: any ) => (
-                                    <h2 className='text-xl font-bold my-5 text-stone-800' {...props} />
-                                ),
-                                h3: ( props: any ) => (
-                                    <h3 className='font-bold my-5 text-stone-800' {...props} />
-                                ),
-                                h4: ( props: any ) => (
-                                    <h4 className='my-5 text-stone-800' {...props} />
-                                ),
-                                h5: ( props: any ) => (
-                                    <h5 className='my-5 text-stone-800' {...props} />
-                                ),
-                                h6: ( props: any ) => (
-                                    <h6 className='my-5 text-stone-800' {...props} />
-                                ),
-                                normal: ( props: any ) => (
-                                    <p className='text-lg my-5 text-slate-500' {...props} />
-                                ),
-                                li: ( { children }: any ) => (
-                                    <li className='list-disc text-lg ml-5 my-2 text-stone-800'>{children}</li>
-                                ),
-                                link: ( { href, children }: any ) => (
-                                    <a href={href} className='text-sky-600 hover:underline'>{children}</a>
-                                ),
-                            }
-                        }
-                    />
+                    {
+                        post.author.bio !== null ? (
+                            <div className='text-slate-500'>
+                                <PortableText
+                                    dataset={process.env.NEXT_PUBLIC_SANITY_DATASET!}
+                                    projectId={process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!}
+                                    content={post.author.bio}
+                                    serializers={
+                                        {
+                                            h1: ( props: any ) => (
+                                                <h1 className='text-2xl font-bold my-5 text-stone-800' {...props} />
+                                            ),
+                                            h2: ( props: any ) => (
+                                                <h2 className='text-xl font-bold my-5 text-stone-800' {...props} />
+                                            ),
+                                            h3: ( props: any ) => (
+                                                <h3 className='font-bold my-5 text-stone-800' {...props} />
+                                            ),
+                                            h4: ( props: any ) => (
+                                                <h4 className='my-5 text-stone-800' {...props} />
+                                            ),
+                                            h5: ( props: any ) => (
+                                                <h5 className='my-5 text-stone-800' {...props} />
+                                            ),
+                                            h6: ( props: any ) => (
+                                                <h6 className='my-5 text-stone-800' {...props} />
+                                            ),
+                                            normal: ( props: any ) => (
+                                                <p className='text-lg my-5 text-slate-500' {...props} />
+                                            ),
+                                            li: ( { children }: any ) => (
+                                                <li className='list-disc text-lg ml-5 my-2 text-stone-800'>{children}</li>
+                                            ),
+                                            link: ( { href, children }: any ) => (
+                                                <a href={href} className='text-sky-600 hover:underline'>{children}</a>
+                                            ),
+                                        }
+                                    }
+
+                                />
+                            </div>
+                        ) : ""
+                    }
                 </div>
 
                 <div className='mt-5 py-6  flex justify-center border-t-2 border-b-2 border-slate-300'>
@@ -147,8 +158,6 @@ export const BlogArticle = ( { post }: Props ) => {
                     </div>
                 </div>
             </section>
-
-
         </article>
     )
 }

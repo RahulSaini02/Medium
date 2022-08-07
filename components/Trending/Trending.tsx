@@ -19,7 +19,7 @@ export const Trending = ( { posts }: Props ) => {
                 </div>
                 <div className='py-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7'>
                     {
-                        posts.map( post => ( <Card key={post._id} post={post} /> ) )
+                        posts.map( post => <Card key={post._id} post={post} /> )
                     }
                 </div>
             </div>

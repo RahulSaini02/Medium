@@ -33,14 +33,14 @@ export const Header = () => {
                         <img className='w-44 cursor-pointer object-contain' src="https://links.papareact.com/yvf" alt="medium" />
                     </Link>
                 </div>
-                <div className='flex space-x-6 items-center text-gray-800 cursor-pointer hover:text-black'>
+                <div className='flex space-x-6 items-center text-gray-800 cursor-pointer bg- hover:text-black'>
                     <div className='hidden md:inline-flex space-x-6'>
                         <h3>Our Story</h3>
                         <h3>Membership</h3>
                         <h3>Write</h3>
                     </div>
                     <h3>Sign In</h3>
-                    <RoundedButton text='Get Started' textColor='white' bgColor='bg-stone-800' px='4' py='3' w='w-26' />
+                    <RoundedButton text='Get Started' textColor='white' bgColor={`${ active ? 'bg-lime-700' : 'bg-stone-800' }`} px='4' py='2' w='w-26' />
                 </div>
             </div>
         </header>
