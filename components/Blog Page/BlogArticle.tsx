@@ -15,12 +15,12 @@ export const BlogArticle = ( { post }: Props ) => {
                 <UserHeader post={post} />
                 {/* Title | Descritpion */}
                 <div className='space-y-2'>
-                    <h2 className='text-stone-700 text-4xl font-semibold'>{post.title}</h2>
-                    <h3 className='text-xl text-slate-500'>{post.description}</h3>
+                    <h2 className='text-stone-800 text-2xl md:text-4xl font-semibold'>{post.title}</h2>
+                    <h3 className='text-sm lg:text-xl text-slate-500'>{post.description}</h3>
                 </div>
                 {/* Main Image */}
                 <div>
-                    <img className='w-full object-cover ' src={urlFor( post.mainImage ).url()!} alt="main blog image" />
+                    <img className='w-full object-cover' src={urlFor( post.mainImage ).url()!} alt="main blog image" />
                 </div>
                 {/* Article */}
                 {
@@ -33,10 +33,10 @@ export const BlogArticle = ( { post }: Props ) => {
                                 serializers={
                                     {
                                         h1: ( props: any ) => (
-                                            <h1 className='text-2xl font-bold my-5 text-stone-800' {...props} />
+                                            <h1 className='text-lg md:text-2xl font-bold my-5 text-stone-800' {...props} />
                                         ),
                                         h2: ( props: any ) => (
-                                            <h2 className='text-xl font-bold my-5 text-stone-800' {...props} />
+                                            <h2 className='text-sm md:text-lg font-bold my-5 text-stone-800' {...props} />
                                         ),
                                         h3: ( props: any ) => (
                                             <h3 className='font-bold my-5 text-stone-800' {...props} />
@@ -51,10 +51,10 @@ export const BlogArticle = ( { post }: Props ) => {
                                             <h6 className='my-5 text-stone-800' {...props} />
                                         ),
                                         normal: ( props: any ) => (
-                                            <p className='text-lg my-5 text-stone-800' {...props} />
+                                            <p className='text-base md:text-lg my-5 text-stone-800' {...props} />
                                         ),
                                         li: ( { children }: any ) => (
-                                            <li className='list-disc text-lg ml-5 my-2 text-stone-800'>{children}</li>
+                                            <li className='list-disc text-sm lg:text-lg ml-5 my-2 text-stone-800'>{children}</li>
                                         ),
                                         link: ( { href, children }: any ) => (
                                             <a href={href} className='text-sky-600 hover:underline'>{children}</a>
@@ -70,22 +70,22 @@ export const BlogArticle = ( { post }: Props ) => {
                     <div className='flex items-center space-x-4'>
                         <div className='relative group w-20 flex items-center justify-center space-x-2 cursor-pointer hover:text-stone-700'>
                             <HoverInfo text='Likes' />
-                            <SparklesIcon className='h-7 w-7' />
+                            <SparklesIcon className='h-6 w-6 md:h-7 md:w-7' />
                             <p>7.5K</p>
                         </div>
                         <div className='relative group w-20  flex items-center justify-center  space-x-2 cursor-pointer hover:text-stone-700'>
                             <HoverInfo text='Respond' />
-                            <ChatIcon className='h-7 w-7' />
+                            <ChatIcon className='h-6 w-66 md:h-7 md:w-7' />
                             <p>130</p>
                         </div>
                     </div>
                     <div className='flex items-center space-x-4'>
                         <div className='relative group w-20 flex items-center justify-center '>
-                            <ShareIcon className='h-7 w-7 cursor-pointer hover:text-stone-700' />
+                            <ShareIcon className='h-6 w-6 md:h-7 md:w-7 cursor-pointer hover:text-stone-700' />
                             <HoverInfo text='Share' />
                         </div>
                         <div className='relative group w-20 flex items-center justify-center '>
-                            <BookmarkIcon className='h-7 w-7 cursor-pointer hover:text-stone-700' />
+                            <BookmarkIcon className='h-6 w-6 md:h-7 md:w-7 cursor-pointer hover:text-stone-700' />
                             <HoverInfo text='Bookmark' />
                         </div>
                     </div>
@@ -134,10 +134,10 @@ export const BlogArticle = ( { post }: Props ) => {
                                                 <h6 className='my-5 text-stone-800' {...props} />
                                             ),
                                             normal: ( props: any ) => (
-                                                <p className='text-lg my-5 text-slate-500' {...props} />
+                                                <p className='text-base lg:text-lg my-5 text-slate-500' {...props} />
                                             ),
                                             li: ( { children }: any ) => (
-                                                <li className='list-disc text-lg ml-5 my-2 text-stone-800'>{children}</li>
+                                                <li className='list-disc text-sm lg:text-lg ml-5 my-2 text-stone-800'>{children}</li>
                                             ),
                                             link: ( { href, children }: any ) => (
                                                 <a href={href} className='text-sky-600 hover:underline'>{children}</a>

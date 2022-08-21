@@ -18,9 +18,9 @@ export const Card = ( { post }: Props ) => {
                     <h3 className='text-md text-black font-semibold'>{post.author.name}</h3>
                 </div>
                 <Link href={`/post/${ post.slug.current }`}>
-                    <h2 className='text-xl font-bold max-w-sm cursor-pointer'>{post.title}</h2>
+                    <h2 className='text-md lg:text-xl font-bold max-w-sm cursor-pointer hover:underline'>{post.title}</h2>
                 </Link>
-                <p className='text-gray-600 text-sm'>{dateFormater( post.publishedAt )} · 3 min read</p>
+                <p className='text-gray-600 text-sm'>{dateFormater( post.publishedAt )} · {post.body.length} min read</p>
             </div>
         </div>
     )

@@ -42,10 +42,10 @@ export const ThirdSection = ( { post }: Props ) => {
                                     serializers={
                                         {
                                             h1: ( props: any ) => (
-                                                <h1 className='text-2xl font-bold my-5 text-stone-800' {...props} />
+                                                <h1 className='text-lg md:text-2xl font-bold my-5 text-stone-800' {...props} />
                                             ),
                                             h2: ( props: any ) => (
-                                                <h2 className='text-xl font-bold my-5 text-stone-800' {...props} />
+                                                <h2 className='text-sm md:text-lg font-bold my-5 text-stone-800' {...props} />
                                             ),
                                             h3: ( props: any ) => (
                                                 <h3 className='font-bold my-5 text-stone-800' {...props} />
@@ -60,17 +60,16 @@ export const ThirdSection = ( { post }: Props ) => {
                                                 <h6 className='my-5 text-stone-800' {...props} />
                                             ),
                                             normal: ( props: any ) => (
-                                                <p className='text-lg my-5 text-slate-500' {...props} />
+                                                <p className='text-base md:text-lg my-5 text-stone-800' {...props} />
                                             ),
                                             li: ( { children }: any ) => (
-                                                <li className='list-disc text-lg ml-5 my-2 text-stone-800'>{children}</li>
+                                                <li className='list-disc text-sm lg:text-lg ml-5 my-2 text-stone-800'>{children}</li>
                                             ),
                                             link: ( { href, children }: any ) => (
                                                 <a href={href} className='text-sky-600 hover:underline'>{children}</a>
                                             ),
                                         }
                                     }
-
                                 />
                             </div>
                         ) : ""
